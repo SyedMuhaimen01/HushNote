@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/hush_note_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/hush_note_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.HushNote"
+        tools:targetApi="35">
+        <activity
+            android:name=".presentation.activity.HomeActivity"
+            android:theme="@style/Theme.HushNote"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.activity.SplashActivity"
+            android:theme="@style/Theme.HushNote.SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
