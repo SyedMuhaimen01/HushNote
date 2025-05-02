@@ -12,5 +12,6 @@
         <item name="colorOnSurfaceVariant">@color/md_theme_dark_onSurfaceVariant</item>
         <item name="colorOutline">@color/md_theme_dark_outline</item>
         <item name="colorSurfaceVariant">@color/md_theme_dark_surface_variant</item>
+        <item name="android:colorBackground">@color/md_theme_dark_background</item>
     </style>
 </resources>

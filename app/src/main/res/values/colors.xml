@@ -3,6 +3,7 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>
+    <color name="ImagePlaceholder">#2F2F2F</color> <!-- Match background for placeholders -->
 
     <!-- Light Theme Colors -->
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".application.HushNote"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,14 +13,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HushNote"
         tools:targetApi="35">
+
         <activity
-            android:name=".presentation.activity.HomeActivity"
-            android:theme="@style/Theme.HushNote"
+            android:name=".presentation.activity.AddNoteActivity"
             android:exported="false" />
         <activity
+            android:name=".presentation.activity.NoteEditorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.activity.SignUpActivity"
+            android:exported="false"
+            android:theme="@style/Theme.HushNote" />
+        <activity
+            android:name=".presentation.activity.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.HushNote" />
+        <activity
+            android:name=".presentation.activity.HomeActivity"
+            android:exported="false"
+            android:fitsSystemWindows="true"
+            android:theme="@style/Theme.HushNote" />
+        <activity
             android:name=".presentation.activity.SplashActivity"
-            android:theme="@style/Theme.HushNote.SplashScreen"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.HushNote.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
