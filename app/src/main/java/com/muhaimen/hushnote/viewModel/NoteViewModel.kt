@@ -2,43 +2,72 @@ package com.muhaimen.hushnote.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.muhaimen.hushnote.data.dataclass.Note
 import com.muhaimen.hushnote.data.repository.NotesRepository
 
-class NoteViewModel (application: Application) : AndroidViewModel(application){
+class NoteViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = NotesRepository()
 
-    val notesLiveData = MutableLiveData<List<Note>?>()
-    // LiveData for handling success or failure of operations
-    val operationStatus = MutableLiveData<Pair<Boolean, String?>>()
+    private val _notes = MutableLiveData<List<Note>?>()
+    val notes: LiveData<List<Note>?> = _notes
+
+    private val _operationStatus = MutableLiveData<Pair<Boolean, String?>>()
+    val operationStatus: LiveData<Pair<Boolean, String?>> = _operationStatus
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
 
     fun addNote(note: Note) {
+        _isLoading.value = true
         repository.addNote(note) { success, message ->
-            operationStatus.value = Pair(success, message)
-        }
-    }
-
-    fun getNotes() {
-        repository.getNotes { notes, message ->
-            if (notes != null) {
-                notesLiveData.value = notes
-            } else {
-                operationStatus.value = Pair(false, message)
-            }
+            _isLoading.value = false
+            _operationStatus.value = Pair(success, message)
         }
     }
 
     fun updateNote(noteId: String, updatedNote: Note) {
+        _isLoading.value = true
         repository.updateNote(noteId, updatedNote) { success, message ->
-            operationStatus.value = Pair(success, message)
+            _isLoading.value = false
+            _operationStatus.value = Pair(success, message)
         }
     }
 
     fun deleteNote(noteId: String) {
+        _isLoading.value = true
         repository.deleteNote(noteId) { success, message ->
-            operationStatus.value = Pair(success, message)
+            _isLoading.value = false
+            _operationStatus.value = Pair(success, message)
         }
+    }
+
+    fun getNotes() {
+        _isLoading.value = true
+        repository.getNotes { notes, error ->
+            _isLoading.value = false
+            if (notes != null) {
+                _notes.value = notes
+            } else {
+                _operationStatus.value = Pair(false, error)
+            }
+        }
+    }
+
+    fun startListeningToNotes() {
+        repository.listenToNotes { notes, error ->
+            if (notes != null) {
+                _notes.value = notes
+            } else {
+                _operationStatus.value = Pair(false, error)
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        repository.removeListener()
     }
 }

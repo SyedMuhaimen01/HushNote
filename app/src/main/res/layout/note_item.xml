@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clipToOutline="true"
     app:cardElevation="4dp"
@@ -16,8 +16,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/article_title"
-            android:layout_width="wrap_content"
+            android:id="@+id/note_title"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:text="@string/sample_note_title"
@@ -25,26 +25,14 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
             android:maxLines="1"
             android:ellipsize="end"/>
+
         <TextView
-            android:id="@+id/article_author"
+            android:id="@+id/note_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:text="author"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            tools:ignore="HardcodedText,SmallSp" />
-        <TextView
-            android:id="@+id/article_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:text="@string/sample_note_content"
             android:textStyle="normal"
             android:layout_marginTop="0dp"
@@ -55,16 +43,25 @@
             android:ellipsize="end"/>
 
         <TextView
-            android:id="@+id/article_time"
+            android:id="@+id/note_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"
             android:text="Time"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
             android:maxLines="1"
             android:layout_gravity="end"
             tools:ignore="HardcodedText,SmallSp" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/fav_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/star_off"
+        android:layout_gravity="top|end"
+        android:visibility="gone"
+        tools:ignore="ContentDescription" />
 </androidx.cardview.widget.CardView>

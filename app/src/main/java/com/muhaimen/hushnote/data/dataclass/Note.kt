@@ -12,4 +12,17 @@ data class Note(
     var timeStamp: Long = System.currentTimeMillis(),
     var isPinned: Boolean = false,
     var isArchived: Boolean = false,
-) : Parcelable
+    val tags: List<String> = listOf()
+) : Parcelable {
+
+    constructor() : this(
+        id = "",
+        title = "",
+        content = "",
+        imageUrl = "",
+        timeStamp = 0L,
+        isPinned = false,
+        isArchived = false,
+        tags = listOf()
+    )
+}
